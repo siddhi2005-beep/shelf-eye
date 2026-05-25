@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Walmart Shelf-Eye | Autonomous Retail Vision Ops</title>
+    <!-- Google Fonts for futuristic high-fidelity typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <!-- Sound Synth & Digital Hum HUD Overlay -->
+    <div class="hud-sound-badge">
+      <button id="sound-toggle" class="sound-btn cyber-btn" title="Toggle System Synthesized Sound Feedback">
+        <span class="sound-wave">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </span>
+        <span class="sound-label">AUDIO: ON</span>
+      </button>
+    </div>
+
+    <!-- Retro futuristic cyber sidebar -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="spark-container">
+          <div class="spark-sparkle"></div>
+          <div class="spark-core"></div>
+        </div>
+        <div>
+          <strong>SHELF-EYE</strong>
+          <small>Vision-AI Agent v2.0</small>
+        </div>
+      </div>
+      <nav>
+        <a href="#monitor" class="active" data-tab="monitor">
+          <span class="nav-icon">👁️</span> Live Monitor
+        </a>
+        <a href="#alerts" data-tab="alerts">
+          <span class="nav-icon">⚠️</span> Alerts Queue
+        </a>
+        <a href="#orders" data-tab="orders">
+          <span class="nav-icon">📦</span> Restock Agent
+        </a>
+        <a href="/docs" target="_blank">
+          <span class="nav-icon">📄</span> API Swagger
+        </a>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="system-status">
+          <span class="pulse-dot green"></span>
+          <div class="sys-info">
+            <span class="sys-title">SYSTEM ONLINE</span>
+            <span class="sys-meta">FastAPI Core Active</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <main>
+      <!-- Cyber Topbar Header -->
+      <section class="topbar">
+        <div>
+          <p class="eyebrow">SMART-STORE INVENTORY INFERENCE ENGINE</p>
+          <h1>Autonomous Vision-AI Retail Operations</h1>
+        </div>
+        <div class="clock-display" id="clock">20:30:35</div>
+      </section>
+
+      <!-- KPI Glow Grid -->
+      <section class="kpis" id="monitor">
+        <article class="kpi-card" data-tilt>
+          <div class="kpi-glow cyan"></div>
+          <div class="kpi-header">
+            <p>Open Alerts</p>
+            <span class="kpi-icon">🚨</span>
+          </div>
+          <span id="open-alerts" class="kpi-value neon-red">0</span>
+          <div class="kpi-bar red-bar"></div>
+        </article>
+
+        <article class="kpi-card" data-tilt>
+          <div class="kpi-glow yellow"></div>
+          <div class="kpi-header">
+            <p>Restock Drafts</p>
+            <span class="kpi-icon">📦</span>
+          </div>
+          <span id="orders-count" class="kpi-value neon-yellow">0</span>
+          <div class="kpi-bar yellow-bar"></div>
+        </article>
+
+        <article class="kpi-card" data-tilt>
+          <div class="kpi-glow green"></div>
+          <div class="kpi-header">
+            <p>Alert Contacts</p>
+            <span class="kpi-icon">👥</span>
+          </div>
+          <span id="subscriber-count" class="kpi-value neon-green">0</span>
+          <div class="kpi-bar green-bar"></div>
+        </article>
+
+        <article class="kpi-card" data-tilt>
+          <div class="kpi-glow blue"></div>
+          <div class="kpi-header">
+            <p>Simulations Sent</p>
+            <span class="kpi-icon">🔔</span>
+          </div>
+          <span id="notification-count" class="kpi-value neon-blue">0</span>
+          <div class="kpi-bar blue-bar"></div>
+        </article>
+      </section>
+
+      <!-- Interactive 3D Shelf Visualizer -->
+      <section class="shelf-3d-section">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">Interactive Store Aisle Map</p>
+            <h2>3D Digital Twin Stock Visualizer</h2>
+          </div>
+          <div class="shelf-status-tag">REALTIME PLANOGRAM CORRELATION</div>
+        </div>
+        <div class="shelf-container-3d">
+          <div class="shelf-scene">
+            <!-- Isometric slanting 3D Shelf -->
+            <div class="shelf-cabinet">
+              <!-- Shelf Row 1: Dairy & Milk -->
+              <div class="shelf-row" id="row-dairy">
+                <div class="shelf-row-label">DAIRY BAY A14</div>
+                <div class="shelf-row-surface"></div>
+                <div class="shelf-slots-grid">
+                  <div class="shelf-slot" id="slot-milk-1" data-product="Great Value 2% Milk">
+                    <div class="shelf-3d-item milk-carton animate-bounce">
+                      <div class="item-face front"></div>
+                      <div class="item-face back"></div>
+                      <div class="item-face left"></div>
+                      <div class="item-face right"></div>
+                      <div class="item-face top"></div>
+                    </div>
+                    <div class="slot-marker">Milk A</div>
+                  </div>
+                  <div class="shelf-slot" id="slot-milk-2" data-product="Great Value 2% Milk">
+                    <div class="shelf-3d-item milk-carton animate-bounce">
+                      <div class="item-face front"></div>
+                      <div class="item-face back"></div>
+                      <div class="item-face left"></div>
+                      <div class="item-face right"></div>
+                      <div class="item-face top"></div>
+                    </div>
+                    <div class="slot-marker">Milk B</div>
+                  </div>
+                  <div class="shelf-slot empty" id="slot-milk-empty" data-product="Empty Shelf Gap">
+                    <div class="empty-glow-ring"></div>
+                    <div class="slot-marker label-empty">EMPTY GAP</div>
+                  </div>
+                  <div class="shelf-slot" id="slot-dairy-3" data-product="Great Value Butter">
+                    <div class="shelf-3d-item dairy-box">
+                      <div class="item-face front"></div>
+                      <div class="item-face back"></div>
+                      <div class="item-face left"></div>
+                      <div class="item-face right"></div>
+                      <div class="item-face top"></div>
+                    </div>
+                    <div class="slot-marker">Butter</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Shelf Row 2: Beverages & Soda -->
+              <div class="shelf-row" id="row-beverages">
+                <div class="shelf-row-label">BEVERAGES BAY B02</div>
+                <div class="shelf-row-surface"></div>
+                <div class="shelf-slots-grid">
+                  <div class="shelf-slot" id="slot-soda-1" data-product="Coca-Cola 12pk">
+                    <div class="shelf-3d-item soda-can">
+                      <div class="item-face front"></div>
+                      <div class="item-face back"></div>
+                      <div class="item-face left"></div>
+                      <div class="item-face right"></div>
+                      <div class="item-face top"></div>
+                    </div>
+                    <div class="slot-marker">Soda A</div>
+                  </div>
+                  <div class="shelf-slot" id="slot-soda-2" data-product="Coca-Cola 12pk">
+                    <div class="shelf-3d-item soda-can">
+                      <div class="item-face front"></div>
+                      <div class="item-face back"></div>
+                      <div class="item-face left"></div>
+                      <div class="item-face right"></div>
+                      <div class="item-face top"></div>
+                    </div>
+                    <div class="slot-marker">Soda B</div>
+                  </div>
+                  <div class="shelf-slot" id="slot-juice-1" data-product="Great Value Orange Juice">
+                    <div class="shelf-3d-item juice-bottle">
+                      <div class="item-face front"></div>
+                      <div class="item-face back"></div>
+                      <div class="item-face left"></div>
+                      <div class="item-face right"></div>
+                      <div class="item-face top"></div>
+                    </div>
+                    <div class="slot-marker">Juice</div>
+                  </div>
+                  <div class="shelf-slot empty" id="slot-juice-empty" data-product="Empty Shelf Gap">
+                    <div class="empty-glow-ring"></div>
+                    <div class="slot-marker label-empty">EMPTY GAP</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Shelf Row 3: Fresh Produce -->
+              <div class="shelf-row" id="row-produce">
+                <div class="shelf-row-label">PRODUCE BAY C10</div>
+                <div class="shelf-row-surface"></div>
+                <div class="shelf-slots-grid">
+                  <div class="shelf-slot" id="slot-apple-1" data-product="Red Delicious Apple">
+                    <div class="shelf-3d-item fruit-mesh">
+                      <div class="item-face front"></div>
+                      <div class="item-face back"></div>
+                      <div class="item-face left"></div>
+                      <div class="item-face right"></div>
+                      <div class="item-face top"></div>
+                    </div>
+                    <div class="slot-marker">Apples</div>
+                  </div>
+                  <div class="shelf-slot" id="slot-banana-1" data-product="Organic Bananas">
+                    <div class="shelf-3d-item banana-bunch">
+                      <div class="item-face front"></div>
+                      <div class="item-face back"></div>
+                      <div class="item-face left"></div>
+                      <div class="item-face right"></div>
+                      <div class="item-face top"></div>
+                    </div>
+                    <div class="slot-marker">Bananas</div>
+                  </div>
+                  <div class="shelf-slot" id="slot-carrot-1" data-product="Fresh Carrots">
+                    <div class="shelf-3d-item veggie-box">
+                      <div class="item-face front"></div>
+                      <div class="item-face back"></div>
+                      <div class="item-face left"></div>
+                      <div class="item-face right"></div>
+                      <div class="item-face top"></div>
+                    </div>
+                    <div class="slot-marker">Carrots</div>
+                  </div>
+                  <div class="shelf-slot" id="slot-produce-empty" data-product="Empty Shelf Gap">
+                    <div class="empty-glow-ring"></div>
+                    <div class="slot-marker label-empty">EMPTY GAP</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Aisle Interactive stock editor simulation -->
+          <div class="shelf-controller-card">
+            <h3>Live Shelf Controller</h3>
+            <p>Directly trigger Vision-AI Agent workflows by removing inventory stocks below.</p>
+            <div class="sim-slider-group">
+              <div class="slider-item">
+                <div class="slider-header">
+                  <span>🥛 MILK INVENTORY</span>
+                  <span id="val-milk" class="neon-green">100%</span>
+                </div>
+                <input type="range" id="sim-milk" min="0" max="100" value="100" class="cyber-slider" />
+              </div>
+
+              <div class="slider-item">
+                <div class="slider-header">
+                  <span>🥤 JUICE INVENTORY</span>
+                  <span id="val-juice" class="neon-green">100%</span>
+                </div>
+                <input type="range" id="sim-juice" min="0" max="100" value="100" class="cyber-slider" />
+              </div>
+
+              <div class="slider-item">
+                <div class="slider-header">
+                  <span>🍎 APPLE INVENTORY</span>
+                  <span id="val-apple" class="neon-green">100%</span>
+                </div>
+                <input type="range" id="sim-apple" min="0" max="100" value="100" class="cyber-slider" />
+              </div>
+            </div>
+            <button id="sim-trigger-drift" class="cyber-btn neon-red-btn pulse-glow-button">
+              💥 TRIGGER PLANOGRAM DRIFT
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- CCTV Feeds & Agent Processing Terminal -->
+      <section class="workspace">
+        <!-- CRT CCTV camera feeds with Split comparison view slider -->
+        <div class="analysis-panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Smart Camera Stream</p>
+              <h2>Vision-AI CCTV Frame Inspector</h2>
+            </div>
+            <button id="demo-fill" type="button" class="cyber-btn btn-secondary">Fill Default Metadata</button>
+          </div>
+
+          <!-- CRT Camera Container -->
+          <div class="crt-monitor-container">
+            <div class="crt-glare-overlay"></div>
+            <div class="crt-scanline-overlay"></div>
+            <div class="cctv-header">
+              <span class="cctv-rec-badge"><span class="blinking-red-dot"></span> FEED: CH_04_SHELF</span>
+              <span class="cctv-time-stamp" id="cctv-time">WM-101 / Aisle A14</span>
+            </div>
+
+            <!-- Swipe Slider Container for Raw vs Annotated frame comparison -->
+            <div class="split-slider-container" id="split-slider">
+              <!-- Processed / Annotated Image (Background) -->
+              <div class="split-image-pane processed-pane">
+                <img id="processed-image" alt="Processed shelf frame with AI detections" src="" />
+                <div class="placeholder-screen" id="split-placeholder">
+                  <div class="crt-static-effect"></div>
+                  <span class="screen-tag">STANDBY: NO DATA RECIEVED</span>
+                  <p class="screen-sub">Upload an aisle photo, run simulation, or try one-click demo frames below to boot visualizer</p>
+                </div>
+              </div>
+
+              <!-- Raw Original Image (Foreground overlay) -->
+              <div class="split-image-pane raw-pane" id="raw-pane">
+                <img id="raw-image" alt="Raw uploaded shelf frame" src="" />
+              </div>
+
+              <!-- Draggable Swipe Handle bar -->
+              <div class="split-handle" id="split-handle">
+                <div class="split-handle-line"></div>
+                <div class="split-handle-button">↔</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Presets for quick demos -->
+          <div class="demo-channels-row">
+            <span class="channels-label">ONE-CLICK DEMO CHANNELS:</span>
+            <div class="channel-buttons">
+              <button type="button" class="channel-btn cyber-btn" data-channel="dairy-empty">
+                🥛 MILK OUT-OF-STOCK
+              </button>
+              <button type="button" class="channel-btn cyber-btn" data-channel="juice-empty">
+                🥤 JUICE SHELF GAP
+              </button>
+              <button type="button" class="channel-btn cyber-btn" data-channel="stocked-all">
+                ✅ FULLY STOCKED A14
+              </button>
+            </div>
+          </div>
+
+          <!-- Form to run vision agent -->
+          <form id="analysis-form" class="cyber-form">
+            <div class="form-row-grid">
+              <label>
+                Store ID
+                <input name="store_id" value="WM-101" class="cyber-input" />
+              </label>
+              <label>
+                Aisle / Zone
+                <input name="aisle" value="Aisle A14 - Dairy" class="cyber-input" />
+              </label>
+            </div>
+            
+            <div class="file-drop-area" id="file-drop-zone">
+              <input name="file" id="file-input" type="file" accept="image/*" required />
+              <div class="drop-illustration">📁</div>
+              <span>Drag & drop shelf frame, or <strong class="neon-cyan">browse locally</strong></span>
+            </div>
+            
+            <button class="primary cyber-btn neon-blue-btn btn-large" type="submit">
+              🚀 BOOT AUTONOMOUS VISION AGENT
+            </button>
+          </form>
+        </div>
+
+        <!-- Right Side: Contact notification capture & Realtime Agent console logs -->
+        <div class="agent-side-panel">
+          <div class="agent-panel">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">Notifications System</p>
+                <h2>Operations Alert Routing</h2>
+              </div>
+            </div>
+            
+            <form id="subscriber-form" class="cyber-form">
+              <label>
+                Contact Name
+                <input name="name" placeholder="E.g. Department Manager" required class="cyber-input" />
+              </label>
+              <label>
+                Email Address
+                <input name="email" type="email" placeholder="manager@walmart.com" class="cyber-input" />
+              </label>
+              <label>
+                Mobile Phone (SMS)
+                <input name="phone" placeholder="+1..." class="cyber-input" />
+              </label>
+              <button type="submit" class="cyber-btn neon-green-btn">🔔 SUBSCRIBE CONTACT</button>
+            </form>
+
+            <div id="subscriber-list" class="contact-list glass-scroll" style="display: none !important;">
+              <!-- Dynamic content -->
+            </div>
+          </div>
+
+          <!-- Typewriter Agentic Reasoning Console -->
+          <div class="agent-console-panel">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">Autonomous Agent Logs</p>
+                <h2>AI Reasoning Terminal</h2>
+              </div>
+              <span class="status-indicator-tag green">ACTIVE</span>
+            </div>
+            <div class="terminal-container">
+              <div class="terminal-header">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+                <span class="term-title">shelf-eye-agent@walmart-vision</span>
+              </div>
+              <div class="terminal-output glass-scroll" id="terminal-output">
+                <div class="terminal-line system"><span class="term-prompt">&gt;</span> Initializing Shelf-Eye neural network hooks...</div>
+                <div class="terminal-line system"><span class="term-prompt">&gt;</span> YOLOv8n object detection loaded.</div>
+                <div class="terminal-line system"><span class="term-prompt">&gt;</span> OpenCV visual edge planogram parser active.</div>
+                <div class="terminal-line success"><span class="term-prompt">&gt;</span> Ready for automated shelf monitoring. Select a channel or upload a frame.</div>
+              </div>
+            </div>
+            <!-- Standard text summary fallback matching old selector -->
+            <p id="summary" class="hidden-summary-para">Select a demo channel or upload a grocery shelf image to trigger the autonomous restock workflow.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tables and Queues -->
+      <section class="tables">
+        <article id="alerts" class="queue-card">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Operations Board</p>
+              <h2>Real-time Alert Queue</h2>
+            </div>
+          </div>
+          <div id="alerts-list" class="event-list glass-scroll">
+            <!-- Dynamic alerts -->
+          </div>
+        </article>
+
+        <article id="orders" class="queue-card">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Distribution System</p>
+              <h2>Restock Order Drafts</h2>
+            </div>
+          </div>
+          <div id="orders-list" class="event-list glass-scroll">
+            <!-- Dynamic orders -->
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

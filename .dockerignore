@@ -1,0 +1,9 @@
+venv
+__pycache__
+*.pyc
+runs
+backend/uploads/*
+backend/processed/*
+backend/data/shelf_eye_db.json
+.git
+.pytest_cache
