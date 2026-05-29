@@ -1,4 +1,4 @@
-# Walmart Shelf-Eye
+# Shelf-Eye
 
 Autonomous Vision-AI store agent that analyzes shelf camera frames, flags empty shelf zones, creates inventory alerts, drafts restock orders, and logs email/SMS-style notifications for subscribed store operators.
 
@@ -86,26 +86,3 @@ Shelf-Eye turns passive camera infrastructure into an active replenishment signa
 - Restock orders can integrate with inventory systems, handheld associate apps, or distribution center queues.
 - Notification routing can escalate from associate to department manager to store lead based on SLA.
 - Aggregated alert history reveals chronic out-of-stock zones and layout optimization opportunities.
-
-## Demo Script For A 60-Second Walkthrough
-
-1. Open the dashboard and show zero or low alert counts.
-2. Add your email/phone as an alert recipient.
-3. Upload a grocery aisle or empty shelf image.
-4. Show the annotated image with `EMPTY SHELF` bounding boxes.
-5. Show KPIs update: open alert, restock draft, notification count.
-6. Open `/docs` briefly to prove the project has a production API layer.
-
-## Suggested Launch Thread
-
-**Tweet 1:** I built Walmart Shelf-Eye, an autonomous Vision-AI store agent for real-time shelf monitoring at retail scale. It detects out-of-stock zones, draws evidence boxes, and triggers a restock workflow instantly.
-
-**Tweet 2:** The stack is FastAPI, Python, OpenCV, YOLOv8, and a lightweight agent workflow. Camera frames flow into `/api/analyze-image`, then the analyzer returns structured detections and an annotated frame.
-
-**Tweet 3:** Once an empty shelf is detected, the agent drafts a restock order, creates an operations alert, and logs email/SMS-ready notifications for subscribed store managers.
-
-**Tweet 4:** Fully Dockerized, API documented, and built with a live dashboard. GitHub: `<repo link>` Demo: `<live link>` I’m a B.Tech CSE student excited to build applied AI for retail operations.
-
-## Notes
-
-Notification delivery is simulated by design so the demo is safe to run without paid SMS/email credentials. In production, the notification records can be connected to Twilio, SendGrid, Walmart internal messaging, or a webhook queue.
