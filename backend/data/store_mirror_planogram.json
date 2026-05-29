@@ -1,0 +1,55 @@
+{
+  "planogram_id": "plano_783944e7fa",
+  "source_type": "json",
+  "created_at": "2026-05-27T16:11:30Z",
+  "items": [
+    {
+      "product_id": "PLANO-MILK-001",
+      "product_name": "Milk",
+      "target_aisle_zone": "Shelf_Row_1",
+      "expected_facings_count": 4,
+      "relative_bbox": {
+        "x_min": 0.08,
+        "y_min": 0.14,
+        "x_max": 0.46,
+        "y_max": 0.36
+      }
+    },
+    {
+      "product_id": "PLANO-CHEESE-001",
+      "product_name": "Cheese",
+      "target_aisle_zone": "Shelf_Row_1",
+      "expected_facings_count": 3,
+      "relative_bbox": {
+        "x_min": 0.54,
+        "y_min": 0.14,
+        "x_max": 0.88,
+        "y_max": 0.36
+      }
+    },
+    {
+      "product_id": "PLANO-MAGGI-001",
+      "product_name": "Maggi",
+      "target_aisle_zone": "Shelf_Row_2",
+      "expected_facings_count": 5,
+      "relative_bbox": {
+        "x_min": 0.08,
+        "y_min": 0.56,
+        "x_max": 0.56,
+        "y_max": 0.8
+      }
+    },
+    {
+      "product_id": "PLANO-PASTA-001",
+      "product_name": "Pasta",
+      "target_aisle_zone": "Shelf_Row_2",
+      "expected_facings_count": 2,
+      "relative_bbox": {
+        "x_min": 0.64,
+        "y_min": 0.56,
+        "x_max": 0.88,
+        "y_max": 0.8
+      }
+    }
+  ]
+}

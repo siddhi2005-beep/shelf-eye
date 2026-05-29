@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
+from backend.planogram_agent import router as planogram_router
 from backend.routes.api import router as api_router
 from backend.services.storage import store
 
@@ -21,6 +22,7 @@ app.add_middleware(
 )
 
 app.include_router(api_router, prefix="/api")
+app.include_router(planogram_router, prefix="/api")
 
 
 @app.on_event("startup")
